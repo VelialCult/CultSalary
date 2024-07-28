@@ -1,0 +1,13 @@
+main: ru.velialcult.salary.CultSalary
+api-version: 1.16
+version: '${project.version}'
+name: CultSalary
+website: https://vk.com/velialcultstudio
+softdepend:
+  - Vault
+  - PlayerPoints
+  - LuckPerms
+depend:
+  - CultLibrary
+commands:
+  salary:

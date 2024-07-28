@@ -1,0 +1,28 @@
+inventories:
+  main-menu:
+    title: "&8Зарплата"
+    item:
+      symbol: x
+    structure:
+      - . . . . . . . . .
+      - . . . . . . . . .
+      - . . . . x . . . .
+      - . . . . . . . . .
+      - . q . b . n . . .
+    items:
+      available:
+        custom: false
+        displayName: "&aПолучить зарплату"
+        lore:
+          - ''
+          - '&fСледующую зарплату можно будет получить через &a{cooldown}'
+          - ''
+          - '&7Нажмите, чтобы получить зарплату за'
+          - '&7{group}'
+      wait:
+        custom: false
+        displayName: "&cНельзя получить зарплату"
+        lore:
+          - ''
+          - '&7Вы сможете получить запрлату'
+          - '&7через &a{time}'

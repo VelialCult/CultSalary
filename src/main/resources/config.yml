@@ -1,0 +1,28 @@
+settings:
+  database:
+    type: "sqlite" # Mysql, sqlite
+    mysql:
+      host: "host"
+      database: "database"
+      username: "username"
+      password: "pass"
+
+salary:
+  admin: # название группы
+    commands: # Команды при получении зарпалаты
+      - 'eco give {player} 10000'
+    reply: 7d # Как часто можно получать
+  default:
+    commands:
+      - 'eco give {player} 1000'
+    reply: 1d
+
+items: # Отображаемые предметы в GUI, персонально для каждой группы
+  admin: # название группы
+    item:
+      material: "head" # Если хотите указать голову, то пишите head
+      head: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjJmZGQ3MzExMTI1MzMyNGI0Y2QyZGJhNDFkYWU5ZGUwMTIzYTUxMjVkODdjYTFiYmMyOGUyNjk0ZDMwMzIxOSJ9fX0="
+  default:
+    item:
+      material: "head"
+      head: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjYxZDFiNWJlNjQwYTY3ZDQ3MjQ1OTEzODc0M2EyYjJkYjUxY2EwZTA5YjI1OWE1MDBjNGNkNzQ5NTYzNmVhOSJ9fX0="

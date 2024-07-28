@@ -1,0 +1,7 @@
+messages:
+  salary:
+    take: "&a✔ &fВы успешно получили свою зарплату"
+    cooldown: "&c✘ &fВы не можете ещё получить свою зарплату. Приходите через &a{cooldown}"
+  commands:
+    salary:
+      usage: "&6➤ &fИспользуйте - &e/salary"
