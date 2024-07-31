@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>CultSalary</artifactId>
-    <version>1.0.0.0-RELEASE</version>
+    <version>1.0.0.1-RELEASE</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -64,7 +64,7 @@
         <dependency>
             <groupId>ru.velialcult.library</groupId>
             <artifactId>CultLibrary</artifactId>
-            <version>1.0.6.15-RELEASE</version>
+            <version>1.0.6.16-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>

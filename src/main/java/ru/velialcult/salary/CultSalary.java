@@ -17,31 +17,31 @@ import ru.velialcult.salary.providers.ProvidersManager;
 import ru.velialcult.salary.service.SalaryService;
 
 public class CultSalary extends JavaPlugin {
-
+    
     private static CultSalary instance;
     private DataBase dataBase;
-
+    
     private ProvidersManager providersManager;
     private GroupManager groupManager;
     private SalaryService service;
-
+    
     private MessagesFile messagesFile;
     private InventoriesFile inventoriesFile;
-
+    
     @Override
     public void onEnable() {
         instance = this;
         long mills = System.currentTimeMillis();
-
+        
         try {
-
+            
             providersManager = new ProvidersManager(this);
             providersManager.load();
             loadFiles();
-
+            
             UpdateChecker updater = new UpdateChecker(this, "CultSalary");
             updater.check();
-
+            
             String dataBaseType = getConfig().getString("settings.database.type");
             if (dataBaseType.equalsIgnoreCase("mysql")) {
                 this.dataBase = new DataBase(this, DataBaseType.MySQL);
@@ -52,23 +52,23 @@ public class CultSalary extends JavaPlugin {
                 this.dataBase  = new DataBase(this, DataBaseType.SQLite);
                 dataBase.connect();
             }
-
+            
             SalaryDataBase salaryDataBase = new SalaryDataBase(dataBase);
-
+            
             groupManager = new GroupManager(this, providersManager);
-
+            
             this.service = new SalaryService(this,
                                              salaryDataBase,
                                              messagesFile);
-
+            
             Bukkit.getPluginCommand("salary").setExecutor(new SalaryCommand(messagesFile));
-
+            
             getLogger().info("Плагин был запущен за " + ChatColor.YELLOW + (System.currentTimeMillis() - mills) + "ms");
         } catch (Exception e) {
             getLogger().severe("Произошла ошибка при инициализации плагина: " + e.getMessage());
         }
     }
-
+    
     private void loadFiles() {
         this.saveDefaultConfig();
         ConfigurationUtil.loadConfigurations(this, "messages.yml", "inventories.yml");
@@ -78,27 +78,27 @@ public class CultSalary extends JavaPlugin {
         inventoriesFile = new InventoriesFile(this);
         inventoriesFile.load();
     }
-
+    
     public SalaryService getService() {
         return service;
     }
-
+    
     public MessagesFile getMessagesFile() {
         return messagesFile;
     }
-
+    
     public static CultSalary getInstance() {
         return instance;
     }
-
+    
     public ProvidersManager getProvidersManager() {
         return providersManager;
     }
-
+    
     public GroupManager getGroupManager() {
         return groupManager;
     }
-
+    
     public InventoriesFile getInventoriesFile() {
         return inventoriesFile;
     }

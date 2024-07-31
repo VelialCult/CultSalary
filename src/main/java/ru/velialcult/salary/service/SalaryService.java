@@ -16,13 +16,13 @@ import ru.velialcult.salary.salary.Salary;
 import ru.velialcult.salary.storage.SalaryStorage;
 
 public class SalaryService {
-
+    
     private final SalaryStorage storage;
     private final SalaryManager salaryManager;
     private final PlayerDataManager playerDataManager;
     private final MessagesFile messagesFile;
     private final SalaryDataBase salaryDataBase;
-
+    
     public SalaryService(CultSalary cultSalary,
                          SalaryDataBase salaryDataBase,
                          MessagesFile messagesFile) {
@@ -34,7 +34,7 @@ public class SalaryService {
         this.salaryManager = new SalaryManager(storage, playerDataManager);
         this.messagesFile = messagesFile;
     }
-
+    
     public void giveSalary(Player player, String groupName) {
         Salary salary = salaryManager.getSalaryByGroup(groupName);
         PlayerData playerData = playerDataManager.getPlayerData(player.getUniqueId());
@@ -45,22 +45,22 @@ public class SalaryService {
             });
             playerData.setTime(groupName, System.currentTimeMillis());
             salaryDataBase.setTime(player.getUniqueId(), groupName, System.currentTimeMillis());
-
+            
         } else {
             VersionAdapter.MessageUtils().sendMessage(player, messagesFile.getFileOperations().getList("messages.salary.cooldown",
                                                                                                        new ReplaceData("{cooldown}", TimeUtil.getTime(salaryManager.getTimeLeft(player.getUniqueId(), groupName)))
             ));
         }
     }
-
+    
     public PlayerDataManager getPlayerDataManager() {
         return playerDataManager;
     }
-
+    
     public SalaryManager getSalaryManager() {
         return salaryManager;
     }
-
+    
     public SalaryStorage getStorage() {
         return storage;
     }

@@ -10,16 +10,16 @@ import java.time.*;
 import java.util.UUID;
 
 public class SalaryManager {
-
+    
     private final SalaryStorage storage;
     private final PlayerDataManager playerDataManager;
-
+    
     public SalaryManager(SalaryStorage storage,
                          PlayerDataManager playerDataManager) {
         this.storage = storage;
         this.playerDataManager = playerDataManager;
     }
-
+    
     public Salary getSalaryByGroup(String groupName) {
         return storage.getSalaryList()
                 .stream()
@@ -27,7 +27,7 @@ public class SalaryManager {
                 .findAny()
                 .orElse(null);
     }
-
+    
     public boolean timeIsExpire(UUID uuid, String groupName) {
         PlayerData playerData = playerDataManager.getPlayerData(uuid);
         Salary salary = getSalaryByGroup(groupName);
@@ -36,7 +36,7 @@ public class SalaryManager {
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Europe/Moscow"));
         return Duration.between(now, zonedDateTime).isNegative();
     }
-
+    
     public long getTimeLeft(UUID uuid, String groupName) {
         PlayerData playerData = playerDataManager.getPlayerData(uuid);
         Salary salary = getSalaryByGroup(groupName);

@@ -13,16 +13,16 @@ import java.util.Map;
 import java.util.UUID;
 
 public class SalaryDataBase {
-
+    
     private final DataBase dataBase;
     private final Connector connector;
-
+    
     public SalaryDataBase(DataBase dataBase) {
         this.dataBase = dataBase;
         this.connector = dataBase.getConnector();
         createTables();
     }
-
+    
     public void setTime(UUID uuid, String groupName, long timeInMills) {
         long timeInSeconds = timeInMills / 1000;
         connector.execute(SQLQuery.insertOrUpdate(dataBase, "salary_users")
@@ -33,23 +33,23 @@ public class SalaryDataBase {
                                   .where("salary_group", QuerySymbol.EQUALLY, groupName),
                           true);
     }
-
+    
     public Map<String, Long> getTime(UUID uuid) {
         Map<String, Long> groups = new HashMap<>();
         connector.executeQuery(SQLQuery.selectFrom("salary_users")
-                                              .where("uuid", QuerySymbol.EQUALLY, uuid.toString()),
-                rs -> {
-                    while (rs.next()) {
-                        String groupName = rs.getString("salary_group");
-                        long time = rs.getLong("time");
-                        groups.put(groupName, time);
-                    }
-                    return Void.TYPE;
-                }, false);
-
+                                       .where("uuid", QuerySymbol.EQUALLY, uuid.toString()),
+                               rs -> {
+                                   while (rs.next()) {
+                                       String groupName = rs.getString("salary_group");
+                                       long time = rs.getLong("time");
+                                       groups.put(groupName, time);
+                                   }
+                                   return Void.TYPE;
+                               }, false);
+        
         return groups;
     }
-
+    
     private void createTables() {
         new TableConstructor("salary_users",
                              new TableColumn("uuid", ColumnType.VARCHAR_32),
